@@ -1,0 +1,46 @@
+/****************/
+/* COLOUR VARS */
+/**************/
+$by-green: #96ca2d;
+$by-dark: #282828;
+$by-white: #edf7f2;
+
+$pad: 15px;
+
+
+body, div.body{
+	background: $by-white;
+	color: $by-dark;
+	min-height: 100%;
+}
+
+div.nav-bar{
+	background: $by-dark;
+	color: $by-green;
+	height: $pad*5;
+	text-align: center;
+	margin-bottom:0;
+	border-top: 3px solid $by-green;
+	.icon{
+		position: absolute;
+		float:right;
+		top: $pad;
+		right: 0px;
+	}
+	.container{
+		position: relative;
+		height: 100%;
+	}
+}
+
+img.logo{
+	height: inherit;
+	width: auto;
+}
+div.container.main{
+	border-right: 3px solid $by-green;
+	border-left: 3px solid $by-green;
+	background: white;
+	min-height: 700px;
+	padding: $pad;
+}
