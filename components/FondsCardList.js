@@ -1,88 +1,47 @@
 import React, {Component} from 'react'
 import { Image, Icon, Grid, Card } from 'semantic-ui-react'
+import ApiDataCalls from '../services/ApiDataCalls'
 
 class FondsCardList extends Component{
   constructor(){
     super()
+    let apiData = new ApiDataCalls
+    let fondsData = apiData.getFondsData()
     this.state = {
-      items: [
-      {
-        header: 'Browse Fonds (Offices)',
-        description: 'Browse woods guide the way he intended. This selection will bring the works of woods to life right in front of your eyes',
-        color: 'olive',
-        url: 'fonds.png'
-      },
-      {
-        header: ' Browse By Repository',
-       description: 'Browse woods guide the way he intended. This selection will bring the works of woods to life right in front of your eyes.',
-        color: 'olive',
-        url: 'repo.png'
-      },
-      {
-        header: 'Browse Replacement items',
-        description: 'Browse woods guide the way he intended. This selection will bring the works of woods to life right in front of your eyes',
-        color: 'olive',
-        url: 'items.png'
-      },
-      {
-        header: 'Browse Replacement items',
-        description: 'Browse woods guide the way he intended. This selection will bring the works of woods to life right in front of your eyes',
-        color: 'olive',
-        url: 'items.png'
-      },
-      {
-        header: 'Browse Replacement items',
-        description: 'Browse woods guide the way he intended. This selection will bring the works of woods to life right in front of your eyes',
-        color: 'olive',
-        url: 'items.png'
-      },
-      {
-        header: 'Browse Replacement items',
-        description: 'Browse woods guide the way he intended. This selection will bring the works of woods to life right in front of your eyes',
-        color: 'olive',
-        url: 'items.png'
-      },
-      {
-        header: 'Browse Replacement items',
-        description: 'Browse woods guide the way he intended. This selection will bring the works of woods to life right in front of your eyes',
-        color: 'olive',
-        url: 'items.png'
-      },
-      {
-        header: 'Browse Replacement items',
-        description: 'Browse woods guide the way he intended. This selection will bring the works of woods to life right in front of your eyes',
-        color: 'olive',
-        url: 'items.png'
-      },
-      {
-        header: 'Browse Replacement items',
-        description: 'Browse woods guide the way he intended. This selection will bring the works of woods to life right in front of your eyes',
-        color: 'olive',
-        url: 'items.png'
-      },
-      {
-        header: 'Browse Replacement items',
-        description: 'Browse woods guide the way he intended. This selection will bring the works of woods to life right in front of your eyes',
-        color: 'olive',
-        url: 'items.png'
-      },
-      {
-        header: 'Browse Replacement items',
-        description: 'Browse woods guide the way he intended. This selection will bring the works of woods to life right in front of your eyes',
-        color: 'olive',
-        url: 'items.png'
-      },
-      ]
+      isLoaded: false,
+      items: [],
+      error: ""
     }
+  }
+
+
+  componentDidMount() {
+    fetch("http://by2022.adaptcentre.ie/api-get-fonds")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          console.log(JSON.parse(result))
+          this.setState({
+            isLoaded: true,
+            items: JSON.parse(result)
+          });
+        },
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error
+          });
+        }
+      )
   }
 
   renderCards(item){
     const itemList = item.map(function(name, index){
       return(
-          <Card color={name.color}>
+          <Card href="./" color="olive">
             <Card.Content>
-              <Card.Header>{name.header}</Card.Header>
-              <Card.Description>{name.description}</Card.Description>
+              <Card.Header>{name.name} ({name.prefix})</Card.Header>
+              <Card.Description>{name.alt_name}</Card.Description>
             </Card.Content>      
           </Card>       
         )

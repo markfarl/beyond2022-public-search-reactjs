@@ -5,12 +5,19 @@ const fondSearch = (
 		<Tab.Pane attached={false}>
 			 <Form>
 			    <Form.Field>
-			      <label>Keywords</label>
+			      <label>Title</label>
 			      <input placeholder='Enter Keywords
 			      ' />
 			    </Form.Field>
 			    <Form.Field>
-			      <Checkbox label='Include OCR Text in Search' />
+			      <label>Descriptions</label>
+			      <input placeholder='Enter Keywords
+			      ' />
+			    </Form.Field>
+			    <Form.Field>
+			      <label>Adminisative History</label>
+			      <input placeholder='Enter Keywords
+			      ' />
 			    </Form.Field>
 			    <Button type='submit'>Submit</Button>
 			  </Form>
