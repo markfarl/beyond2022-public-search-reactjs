@@ -5,12 +5,21 @@ $by-green: #96ca2d;
 $by-dark: #282828;
 $by-white: #edf7f2;
 
+
+/****************/
+/* PADDING VARS*/
+/**************/
 $pad: 15px;
 
 
+/****************/
+/* GLOBAL      */
+/**************/
 body, div.body{
+	position:relative;
 	background: $by-white;
 	color: $by-dark;
+	height: 100%;
 	min-height: 100%;
 }
 
@@ -31,16 +40,24 @@ div.nav-bar{
 		position: relative;
 		height: 100%;
 	}
+	img.logo{
+		height: inherit;
+		width: auto;
+	}
 }
-
-img.logo{
-	height: inherit;
-	width: auto;
+div#__next{
+	height: 100%;
 }
 div.container.main{
 	border-right: 3px solid $by-green;
 	border-left: 3px solid $by-green;
 	background: white;
-	min-height: 700px;
+	min-height: 100%;
 	padding: $pad;
+}
+.ui.card, .ui.cards>.card {
+	width: 262px;
+	}
+span.higlight{
+	color: $by-green;
 }
