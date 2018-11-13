@@ -16,7 +16,21 @@ class FondsCardList extends Component{
 
 
   componentDidMount() {
-    fetch("http://by2022.adaptcentre.ie/api-get-fonds")
+    fetch("http://by2022.adaptcentre.ie/api-get-fonds",
+        {
+          method: "POST", // *GET, POST, PUT, DELETE, etc.
+          mode: "cors", // no-cors, cors, *same-origin
+          cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+          credentials: "same-origin", // include, *same-origin, omit
+          headers: {
+              //"Content-Type": "application/json; charset=utf-8",
+               "Content-Type": "application/x-www-form-urlencoded",
+          },
+          redirect: "follow", // manual, *follow, error
+          referrer: "no-referrer", // no-referrer, *client
+      }
+
+      )
       .then(res => res.json())
       .then(
         (result) => {
