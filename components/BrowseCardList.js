@@ -8,19 +8,19 @@ class BrowseCardList extends Component{
       items: [
       {
         header: 'Browse Fonds (Offices)',
-        description: 'Browse woods guide the way he intended. This selection will bring the works of woods to life right in front of your eyes',
+        description: 'Browse woods guide the way he intended. This selection will bring the works of woods to life right in front of your eyes. Behold woods uncondtionalBrowse woods guide the way he intended. This selection will bring the works of woods to life right in front of your eyes. Behold woods uncondtional ',
         color: 'olive',
         url: 'fonds.png'
       },
       {
         header: ' Browse By Repository',
-       description: 'Browse woods guide the way he intended. This selection will bring the works of woods to life right in front of your eyes.',
+        description: 'Browse woods guide the way he intended. This selection will bring the works of woods to life right in front of your eyes. Behold woods uncondtionalBrowse woods guide the way he intended. This selection will bring the works of woods to life right in front of your eyes. Behold woods uncondtional ',
         color: 'olive',
         url: 'repo.png'
       },
       {
         header: 'Browse Replacement items',
-        description: 'Browse woods guide the way he intended. This selection will bring the works of woods to life right in front of your eyes',
+        description: 'Browse woods guide the way he intended. This selection will bring the works of woods to life right in front of your eyes. Behold woods uncondtionalBrowse woods guide the way he intended. This selection will bring the works of woods to life right in front of your eyes. Behold woods uncondtional ',
         color: 'olive',
         url: 'items.png'
       },
