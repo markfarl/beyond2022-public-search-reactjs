@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import Link from 'next/link'
 import { Image, Icon, Grid, Card } from 'semantic-ui-react'
 import ApiDataCalls from '../services/ApiDataCalls'
 
@@ -52,12 +53,14 @@ class FondsCardList extends Component{
   renderCards(item){
     const itemList = item.map(function(name, index){
       return(
-          <Card href="./" color="olive">
+        <Link href={{ pathname: '/fonds-details', query: { id: name.ID } }}>
+          <Card color="olive">
             <Card.Content>
               <Card.Header>{name.name} ({name.prefix})</Card.Header>
               <Card.Description>{name.alt_name}</Card.Description>
             </Card.Content>      
-          </Card>       
+          </Card>
+        </Link>     
         )
     })
     return itemList
