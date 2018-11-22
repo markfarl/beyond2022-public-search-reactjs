@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import Link from 'next/link'
+import {Link} from '../routes'
 import { Image, Icon, Grid, Card } from 'semantic-ui-react'
 import ApiDataCalls from '../services/ApiDataCalls'
 
@@ -53,7 +53,7 @@ class FondsCardList extends Component{
   renderCards(item){
     const itemList = item.map(function(name, index){
       return(
-        <Link href={{ pathname: '/fonds-details', query: { id: name.ID } }}>
+        <Link route={`/fonds-details/${name.ID}`}>
           <Card color="olive">
             <Card.Content>
               <Card.Header>{name.name} ({name.prefix})</Card.Header>

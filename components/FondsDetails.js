@@ -3,43 +3,54 @@ import Link from 'next/link'
 import { Image, Icon, Grid, Card } from 'semantic-ui-react'
 import ApiDataCalls from '../services/ApiDataCalls'
 
+
 class FondsDetails extends Component{
-  constructor(){
+
+  
+
+  constructor(props){
     super()
     let apiData = new ApiDataCalls
     let fondsData = apiData.getFondsData()
     this.state = {
       isLoaded: false,
-      items: [],
+      items: {
+        seriesRes:[]
+      },
       error: ""
     }
   }
 
 
   componentDidMount() {
+    let data = JSON.stringify({
+      id: this.props.id
+      })
+
+
     fetch("http://by2022.adaptcentre.ie/api-get-fonds",
+    //fetch("http://localhost/beyond2022wp/wordpress/api-get-fonds",
         {
           method: "POST", // *GET, POST, PUT, DELETE, etc.
           mode: "cors", // no-cors, cors, *same-origin
           cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
           credentials: "same-origin", // include, *same-origin, omit
           headers: {
-              //"Content-Type": "application/json; charset=utf-8",
-               "Content-Type": "application/x-www-form-urlencoded",
+            'Accept': 'application/json, text/plain, */*',
+             "Content-Type": "application/x-www-form-urlencoded",
           },
-          redirect: "follow", // manual, *follow, error
-          referrer: "no-referrer", // no-referrer, *client
+          //body: JSON.stringify({a: 7, str: 'Some string: &=&'})
+          body: data
       }
-
       )
       .then(res => res.json())
       .then(
         (result) => {
-          console.log(JSON.parse(result))
           this.setState({
             isLoaded: true,
-            items: JSON.parse(result)
+            items: JSON.parse(result)[0]
           });
+          console.log(this.state.items)
         },
         (error) => {
           this.setState({
@@ -50,40 +61,43 @@ class FondsDetails extends Component{
       )
   }
 
-  renderCards(item){
+  renderSeriesCards(item){
     const itemList = item.map(function(name, index){
-      return(
-        <Link href={{ pathname: '/fonds-details', query: { id: name.ID } }}>
-          <Card color="olive">
-            <Card.Content>
-              <Card.Header>{name.name} ({name.prefix})</Card.Header>
-              <Card.Description>{name.alt_name}</Card.Description>
-            </Card.Content>      
-          </Card>
-        </Link>     
+      if(index<4){
+        return(
+            <Card color="olive">
+              <Card.Content>
+                <Card.Header>{name.title}</Card.Header>
+                <Card.Meta>{name.unqiue_ref_no}</Card.Meta>
+                <Card.Description>Date Range: {name.woods_date_range} </Card.Description>
+              </Card.Content>      
+            </Card>
         )
+      }
     })
     return itemList
   }
+
 
   render(){
     return(
       <Grid>
         <Grid.Row>
           <Grid.Column width={10}>
-            <p><strong>PR | Plea Rolls</strong><br />
-            Ancient rolls from the Common Law Courts (1294 – 1623)
+            <p><strong>{this.state.items.prefix} | {this.state.items.name}</strong><br />
+            {this.state.items.alt_name}
             </p>
-            <hr />
-            <p><i>Description</i></p>
-            <p>The ancient rolls containing the judicial pleadings of the Common Law Courts, which were at first kept in the Treasury of the Exchequer, were in the sixteenth century deposited for safety in Bermingham Tower, that being the name of the S.W. tower of Dublin Castle. In 1775 this tower was in part taken down for rebuilding, and the rolls were put into sacks and stored in the Battle Axe Hall. After the rebuilding, the space allotted to them was much reduced and the difficulty of finding room for them was further increased by the addition of the rolls of the Summonister of the Exchequer. In 1815 they were removed to the Wardrobe or Record Tower, the S.E. tower of Dublin Castle, but in the meantime a number of rolls had disappeared. Here they remained till, in 1869. they were transferred to the Public Record Office.
 
-These Plea Rolls were arranged in chronological order without distinguishing the several classes. There are three seventeenth-century repertories to the collection, the two first containing short abstracts of nearly all the rolls to the end of the reign of Edward II. The third gives references to selected entries on 200 rolls to the end of the reign of Elizabeth. Its value is much diminished by the imperfect references to the rolls, and consequent difficulty of identifying them. This volume is well indexed. MSS. calendars of these rolls were made by the Record Commissioners, to the end of the reign of Edward II., but they are very imperfect, several Plea Rolls being calendared amongst the Memoranda Rolls, and many entries being omitted. They also published a catalogue in their 8th Report (1819), pp. 79-125, arranging the rolls into three classes, plea rolls, miscellaneous plea, rolls and fragments, though the fragments are sometimes less fragmentary than the Plea Rolls. In the 26th (Appendix III.) and 28th (Appendix I.) Reports of the Deputy Keeper will be found a classification and catalogue of all the Plea Rolls, including some which were found in the Rolls Office collection.* 
-
-</p>
-            <hr />
-            <p><i>Bibliography</i></p>
-            <p>Connolly, Medieval record sources | CONNOLLY, Philomena. Medieval record sources (Dublin, 2002).</p>
+            <div className={this.state.items.description ? '' : 'hidden'}>
+              <hr />
+              <p><i>Description</i></p>
+              <p>{this.state.items.description}</p>
+            </div>
+            <div className={this.state.items.biblioname ? '' : 'hidden'}>
+              <hr />
+              <p><i>Bibliography</i></p>
+              <div dangerouslySetInnerHTML={ { __html: this.state.items.biblioname } }></div>
+            </div>
           </Grid.Column>
           <Grid.Column width={6}>
             <p><strong>Sub fonds</strong><br />
@@ -99,6 +113,21 @@ These Plea Rolls were arranged in chronological order without distinguishing the
             
           </Grid.Column>
         </Grid.Row>
+
+        <Grid.Row>
+          <Grid.Column width={16} className={this.state.items.seriesResCount > 0 ? '' : 'hidden'}>
+          <hr />
+           <p><strong>Related Series</strong><br />
+            {this.state.items.seriesResCount} related series in {this.state.items.name}
+            </p>
+             <Card.Group>
+             {this.renderSeriesCards(this.state.items.seriesRes)}
+             </Card.Group>
+             <p className="link-right"><a href="#">View More >></a></p>
+          </Grid.Column>
+        </Grid.Row>
+
+
         <Grid.Row>
           <Grid.Column width={16}>
           <hr />
@@ -138,41 +167,7 @@ These Plea Rolls were arranged in chronological order without distinguishing the
              <p className="link-right"><a href="#">View More >></a></p>
           </Grid.Column>
         </Grid.Row>
-        <Grid.Row>
-          <Grid.Column width={16}>
-          <hr />
-           <p><strong>Related Series</strong><br />
-            236 related series
-            </p>
-             <Card.Group>
-            <Card color="olive">
-              <Card.Content>
-                <Card.Header>Appeal Indexes, 1862-78</Card.Header>
-                <Card.Description>Registers of appeal cases </Card.Description>
-              </Card.Content>      
-            </Card>
-            <Card color="olive">
-              <Card.Content>
-                <Card.Header>Appeal Indexes, 1862-78</Card.Header>
-                <Card.Description>Registers of appeal cases </Card.Description>
-              </Card.Content>      
-            </Card>
-            <Card color="olive">
-              <Card.Content>
-                <Card.Header>Appeal Indexes, 1862-78</Card.Header>
-                <Card.Description>Registers of appeal cases </Card.Description>
-              </Card.Content>      
-            </Card>
-            <Card color="olive">
-              <Card.Content>
-                <Card.Header>Appeal Indexes, 1862-78</Card.Header>
-                <Card.Description>Registers of appeal cases </Card.Description>
-              </Card.Content>      
-            </Card>
-             </Card.Group>
-             <p className="link-right"><a href="#">View More >></a></p>
-          </Grid.Column>
-        </Grid.Row>
+        
       </Grid>
 
 

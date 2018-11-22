@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Link from 'next/link'
 import Layout from '../components/Layout'
 import FondsCardList from '../components/FondsCardList'
 import FondSearch from '../components/FondSearch'
@@ -10,7 +11,7 @@ class Fonds extends Component{
     render(){
         return(
                 <Layout>
-                	<Header as='h3'><a href="./">Home</a> > <span className="higlight">Fonds List</span></Header>
+                	<Header as='h3'> <Link route={`/`}>Home</Link> > <span className="higlight">Fonds List</span></Header>
                     <FondsCardList />
                     <Divider />                 
                     <FondSearch />          
