@@ -2,11 +2,11 @@ import React, {Component} from 'react'
 import Link from 'next/link'
 import { Image, Icon, Grid, Card } from 'semantic-ui-react'
 import ApiDataCalls from '../services/ApiDataCalls'
-
+import Globals from '../config/Globals'
+import ShowMore from 'react-show-more';
 
 class FondsDetails extends Component{
 
-  
 
   constructor(props){
     super()
@@ -15,7 +15,9 @@ class FondsDetails extends Component{
     this.state = {
       isLoaded: false,
       items: {
-        seriesRes:[]
+        description:"",
+        seriesRes:[],
+        subitemDetails:[],
       },
       error: ""
     }
@@ -65,12 +67,29 @@ class FondsDetails extends Component{
     const itemList = item.map(function(name, index){
       if(index<4){
         return(
-            <Card color="olive">
+            <Card key={`c_${index}`} color="olive">
               <Card.Content>
                 <Card.Header>{name.title}</Card.Header>
                 <Card.Meta>{name.unqiue_ref_no}</Card.Meta>
                 <Card.Description>Date Range: {name.woods_date_range} </Card.Description>
               </Card.Content>      
+            </Card>
+        )
+      }
+    })
+    return itemList
+  }
+  renderSubitemsCards(item){
+    console.log(Globals)
+    const itemList = item.map(function(name, index){
+      if(index<4){
+        return(
+            <Card key={`si_${index}`} color="olive">
+              <Image src={`${Globals.Globals.lorisUrl}/${name.fullfilename}/full/full/0/default.jpg`} />
+              <Card.Content>
+                <Card.Header>{name.fileURL}</Card.Header>
+                <Card.Description>{name.subtype} </Card.Description>
+              </Card.Content>       
             </Card>
         )
       }
@@ -91,7 +110,16 @@ class FondsDetails extends Component{
             <div className={this.state.items.description ? '' : 'hidden'}>
               <hr />
               <p><i>Description</i></p>
-              <p>{this.state.items.description}</p>
+              <p>
+                 <ShowMore
+                    lines={15}
+                    more='Show more'
+                    less='Show less'
+                    anchorClass=''
+                >
+                    {this.state.items.description}
+                </ShowMore>
+              </p>
             </div>
             <div className={this.state.items.biblioname ? '' : 'hidden'}>
               <hr />
@@ -129,40 +157,13 @@ class FondsDetails extends Component{
 
 
         <Grid.Row>
-          <Grid.Column width={16}>
+          <Grid.Column width={16} className={this.state.items.subitemResCount > 0 ? '' : 'hidden'}>
           <hr />
            <p><strong>Substitute items</strong><br />
-            16 related substitute items
+            {this.state.items.subitemResCount} related substitute items
             </p>
-             <Card.Group>
-            <Card color="olive">
-              <Image src="/static/images/sample_1.jpg" />
-              <Card.Content>
-                <Card.Header>Armagh Papers</Card.Header>
-                <Card.Description>3. Copies of Inquisitions re Parishes: </Card.Description>
-              </Card.Content>      
-            </Card>
-            <Card color="olive">
-              <Image src="/static/images/sample_1.jpg" />
-              <Card.Content>
-                <Card.Header>Armagh Papers</Card.Header>
-                <Card.Description>3. Copies of Inquisitions re Parishes: </Card.Description>
-              </Card.Content>      
-            </Card>
-            <Card color="olive">
-              <Image src="/static/images/sample_1.jpg" />
-              <Card.Content>
-                <Card.Header>Armagh Papers</Card.Header>
-                <Card.Description>3. Copies of Inquisitions re Parishes: </Card.Description>
-              </Card.Content>      
-            </Card>
-            <Card color="olive">
-              <Image src="/static/images/sample_1.jpg" />
-              <Card.Content>
-                <Card.Header>Armagh Papers</Card.Header>
-                <Card.Description>3. Copies of Inquisitions re Parishes: </Card.Description>
-              </Card.Content>      
-            </Card>
+            <Card.Group>
+              {this.renderSubitemsCards(this.state.items.subitemDetails)}
              </Card.Group>
              <p className="link-right"><a href="#">View More >></a></p>
           </Grid.Column>
