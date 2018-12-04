@@ -20,9 +20,9 @@ class Fonds extends Component{
         return(
                 <Layout>
                 	<Header as='h5'>
-                        <Link route={`/`}>Home</Link> > <Link route={`/fonds`}>Fonds</Link> > 
-                        <Link route={`/fonds-details/${this.props.fondid}`}>Fonds Details</Link> > 
-                        <Link route={`/results/series-results/${this.props.fondid}`}> Series List </Link> >
+                        <Link route={`/`}><a>Home</a></Link> > <Link route={`/fonds`}><a>Fonds</a></Link> > 
+                        <Link route={`/fonds-details/${this.props.fondid}`}><a>Fonds Details</a></Link> > 
+                        <Link route={`/results/series-results/${this.props.fondid}`}><a>Series List</a></Link> >
                         <span className="higlight"> Series Details </span>
                     </Header>
                     <SeriesDetails id={this.props.id} fondid={this.props.fondid}/>

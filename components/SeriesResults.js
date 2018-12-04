@@ -85,7 +85,7 @@ class SeriesResults extends Component{
   		this.createList(activePage)
   	}
   	createList(page){
-  		let start = page*this.state.itemsPerPage
+  		let start = (page*this.state.itemsPerPage)-this.state.itemsPerPage
   		let end = start+this.state.itemsPerPage
   		this.setState({
 	  		seriesPagination: this.state.items.seriesRes.slice(start, end)
