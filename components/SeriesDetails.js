@@ -1,11 +1,10 @@
 import React, {Component} from 'react'
 import {Link} from '../routes'
 import { Image, Icon, Grid, Card } from 'semantic-ui-react'
-import ApiDataCalls from '../services/ApiDataCalls'
 import Globals from '../config/Globals'
 import ShowMore from 'react-show-more';
 
-class FondsDetails extends Component{
+class SeriesDetails extends Component{
 
 
   constructor(props){
@@ -28,7 +27,7 @@ class FondsDetails extends Component{
       })
 
 
-    fetch(Globals.Globals.apiUrl+"/api-get-fonds",
+    fetch(Globals.Globals.apiUrl+"/api-get-series-details",
         {
           method: "POST", // *GET, POST, PUT, DELETE, etc.
           mode: "cors", // no-cors, cors, *same-origin
@@ -49,6 +48,7 @@ class FondsDetails extends Component{
             isLoaded: true,
             items: JSON.parse(result)[0]
           })
+          console.log(this.state.items)
         },
         (error) => {
           this.setState({
@@ -126,16 +126,6 @@ class FondsDetails extends Component{
             </div>
           </Grid.Column>
           <Grid.Column width={6}>
-            <p><strong>Sub fonds</strong><br />
-            16 Sub Fonds
-            </p>
-            <hr />
-            <p><a href="#">(1) 1 Chancery Enrolments</a></p>
-            <p><a href="#">(2) 2 Judicial Proceedings</a></p>
-            <p><a href="#">(3) 3 Clerk of the Crown and Hanaper</a></p>
-            <p><a href="#">(4) 4 Lunacy Office</a></p>
-            <p><a href="#">(5) 5 Secretary to the Lord Chancellor</a></p>
-            <p><a href="#">(6) 6 Lord Chancellor's Secretary of Bankrupts</a></p>
             
           </Grid.Column>
         </Grid.Row>
@@ -147,7 +137,7 @@ class FondsDetails extends Component{
             {this.state.items.seriesResCount} related series in {this.state.items.name}
             </p>
              <Card.Group>
-             {this.renderSeriesCards(this.state.items.seriesRes)}
+             
              </Card.Group>
              <p className="link-right"><Link route={`/results/series-results/${this.state.items.ID}`}><a>View More >></a></Link></p>
           </Grid.Column>
@@ -161,7 +151,7 @@ class FondsDetails extends Component{
             {this.state.items.subitemResCount} related substitute items
             </p>
             <Card.Group>
-              {this.renderSubitemsCards(this.state.items.subitemDetails)}
+              
              </Card.Group>
              <p className="link-right"><a href="#">View More >></a></p>
           </Grid.Column>
@@ -175,4 +165,4 @@ class FondsDetails extends Component{
   }
 }
 
-export default FondsDetails
+export default SeriesDetails

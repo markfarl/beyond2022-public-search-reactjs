@@ -70,6 +70,12 @@ p.link-right{
 	clear: both;
 	margin-top:15px;
 }
+div.side-filter{
+	border-right: 3px solid $by-white;
+	}
+div.grid-full{
+	min-height: 100vh;
+}
 div.hidden{
 	display:none;
 }

@@ -19,7 +19,7 @@ class Fonds extends Component{
     render(){
         return(
                 <Layout>
-                	<Header as='h3'><Link route={`/`}>Home</Link> > <Link route={`/fonds`}>Fonds</Link> > <span className="higlight">Fonds Details</span></Header>
+                	<Header as='h5'><Link route={`/`}>Home</Link> > <Link route={`/fonds`}>Fonds</Link> > <span className="higlight">Fonds Details</span></Header>
                     <FondsDetails id={this.props.id}/>
                     <Divider />                 
                     <FondSearch />          
