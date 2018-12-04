@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Link} from '../routes'
-import { Image, Icon, Grid, Card } from 'semantic-ui-react'
+import { Image, Icon, Grid, Card, Dimmer, Loader } from 'semantic-ui-react'
 import ApiDataCalls from '../services/ApiDataCalls'
 import Globals from '../config/Globals'
 import ShowMore from 'react-show-more';
@@ -59,12 +59,12 @@ class FondsDetails extends Component{
       )
   }
 
-  renderSeriesCards(item){
+  renderSeriesCards(item,fondid){
     const itemList = item.map(function(name, index){
       if(index<4){
         return(
-            <Link route={`/results/series-results/${name.ID}`}>
-              <Card key={`c_${index}`} color="olive">
+            <Link key={`c_${index}`} route={`/series-details/${name.ID}/${fondid}`}>
+              <Card  color="olive">
                 <Card.Content>
                   <Card.Header>{name.title}</Card.Header>
                   <Card.Meta>{name.unqiue_ref_no}</Card.Meta>
@@ -78,7 +78,6 @@ class FondsDetails extends Component{
     return itemList
   }
   renderSubitemsCards(item){
-    console.log(Globals)
     const itemList = item.map(function(name, index){
       if(index<4){
         return(
@@ -98,9 +97,16 @@ class FondsDetails extends Component{
 
   render(){
     return(
+
       <Grid>
+
         <Grid.Row>
           <Grid.Column width={10}>
+            
+            <Dimmer active={!this.state.isLoaded} inverted>
+            <Loader>Loading</Loader>
+            </Dimmer>
+          
             <p><strong>{this.state.items.prefix} | {this.state.items.name}</strong><br />
             {this.state.items.alt_name}
             </p>
@@ -138,6 +144,7 @@ class FondsDetails extends Component{
             <p><a href="#">(6) 6 Lord Chancellor's Secretary of Bankrupts</a></p>
             
           </Grid.Column>
+          
         </Grid.Row>
 
         <Grid.Row>
@@ -147,7 +154,7 @@ class FondsDetails extends Component{
             {this.state.items.seriesResCount} related series in {this.state.items.name}
             </p>
              <Card.Group>
-             {this.renderSeriesCards(this.state.items.seriesRes)}
+             {this.renderSeriesCards(this.state.items.seriesRes, this.state.items.ID)}
              </Card.Group>
              <p className="link-right"><Link route={`/results/series-results/${this.state.items.ID}`}><a>View More >></a></Link></p>
           </Grid.Column>
@@ -168,7 +175,7 @@ class FondsDetails extends Component{
         </Grid.Row>
         
       </Grid>
-
+      
 
       
       )

@@ -11,7 +11,7 @@ class Fonds extends Component{
     render(){
         return(
                 <Layout>
-                	<Header as='h5'> <Link route={`/`}>Home</Link> > <span className="higlight">Fonds List</span></Header>
+                	<Header as='h5'> <Link route={`/`}><a>Home</a></Link> > <span className="higlight">Fonds List</span></Header>
                     <FondsCardList />
                     <Divider />                 
                     <FondSearch />          

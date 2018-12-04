@@ -17,8 +17,8 @@ class Series extends Component{
     render(){
         return(
                 <Layout>
-                    <Header as='h5'><Link route={`/`}>Home</Link> > <Link route={`/fonds`}>Fonds</Link> > 
-                    <Link route={`/fonds-details/${this.props.fondid}`}>Fonds Details</Link> > <span className="higlight"> Series List </span>
+                    <Header as='h5'><Link route={`/`}><a>Home</a></Link> > <Link route={`/fonds`}><a>Fonds</a></Link> > 
+                    <Link route={`/fonds-details/${this.props.fondid}`}><a>Fonds Details</a></Link> > <span className="higlight"> Series List </span>
 
                     </Header>
                     <SeriesResults fondid={this.props.fondid} />

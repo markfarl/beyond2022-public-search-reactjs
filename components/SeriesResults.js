@@ -14,7 +14,7 @@ class SeriesResults extends Component{
 	        subitemDetails:[],
 	      },
 	      error: "",
-	      totalPages: 1,
+	      totalPages: 0,
 	      itemsPerPage: 15,
 	      activePage: 1,
 	      seriesPagination: []
@@ -65,8 +65,8 @@ class SeriesResults extends Component{
 	renderSeriesList(item){
 		const itemList = item.map((name, index) =>{
 			return(
-				<Link route={`/series-details/${name.ID}/${this.props.fondid}`}>
-				<List.Item key={`sseriesl_${name.ID}`}>
+				<Link key={`sseriesl_${name.ID}`} route={`/series-details/${name.ID}/${this.props.fondid}`}>
+				<List.Item>
 			      <List.Content>
 			        <List.Header as='a'>{name.unqiue_ref_no} {name.title}</List.Header>
 			        <List.Description as='a'>
@@ -114,9 +114,9 @@ class SeriesResults extends Component{
 	         			 {this.renderSeriesList(this.state.seriesPagination)}
 					  </List>
 	         		<Pagination 
-	         		activePage={parseInt(activePage)}
+	         		activePage={1}
 	         		onPageChange={this.handlePaginationChange}
-	         		totalPages={parseInt(totalPages)} />	         		
+	         		totalPages={parseInt(this.state.totalPages)} />	         		
 	         	</Grid.Column>
 	        </Grid.Row>
 	      </Grid>

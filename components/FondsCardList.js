@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Link} from '../routes'
-import { Image, Icon, Grid, Card } from 'semantic-ui-react'
+import { Image, Icon, Grid, Card,  Dimmer, Loader } from 'semantic-ui-react'
 import ApiDataCalls from '../services/ApiDataCalls'
 
 class FondsCardList extends Component{
@@ -53,7 +53,7 @@ class FondsCardList extends Component{
   renderCards(item){
     const itemList = item.map(function(name, index){
       return(
-        <Link route={`/fonds-details/${name.ID}`}>
+        <Link key={`c_${index}`} route={`/fonds-details/${name.ID}`}>
           <Card color="olive">
             <Card.Content>
               <Card.Header>{name.name} ({name.prefix})</Card.Header>
@@ -69,6 +69,9 @@ class FondsCardList extends Component{
   render(){
     return(
       <Card.Group>
+          <Dimmer active={!this.state.isLoaded} inverted>
+              <Loader>Loading</Loader>
+            </Dimmer>
           {this.renderCards(this.state.items)}
       </Card.Group>
 
