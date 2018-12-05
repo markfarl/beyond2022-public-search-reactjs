@@ -4,9 +4,10 @@
   "description": "Public Search in ReactJS",
   "main": "index.js",
   "scripts": {
-    "dev": "node server.js",
+    "dev": "SET NODE_ENV=development",
     "build": "next build",
-    "start": "next start"
+    "prod": "SET NODE_ENV=production",
+    "start": "node server.js"
   },
   "dependencies": {
     "@zeit/next-css": "^1.0.1",

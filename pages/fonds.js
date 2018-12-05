@@ -8,6 +8,7 @@ import '../scss/style.scss'
 
 
 class Fonds extends Component{
+    
     render(){
         return(
                 <Layout>

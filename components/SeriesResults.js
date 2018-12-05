@@ -114,7 +114,7 @@ class SeriesResults extends Component{
 	         			 {this.renderSeriesList(this.state.seriesPagination)}
 					  </List>
 	         		<Pagination 
-	         		activePage={1}
+	         		activePage={activePage}
 	         		onPageChange={this.handlePaginationChange}
 	         		totalPages={parseInt(this.state.totalPages)} />	         		
 	         	</Grid.Column>
