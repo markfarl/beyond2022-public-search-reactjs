@@ -47,6 +47,11 @@ class SeriesDetails extends Component{
             isLoaded: true,
             items: JSON.parse(result)[0]
           })
+
+          //sort the subitem array
+          if(this.state.items.subitemDetails.length>1){
+            this.state.items.subitemDetails.sort(this.dynamicSort("REFNUM"))  
+          } 
           console.log(this.state.items)
         },
         (error) => {
@@ -57,6 +62,23 @@ class SeriesDetails extends Component{
         }
       )
   }
+
+  dynamicSort(property) {
+      var sortOrder = 1;
+
+        if(property[0] === "-") {
+            sortOrder = -1;
+            property = property.substr(1);
+        }
+
+        return function (a,b) {
+            if(sortOrder == -1){
+                return b[property].localeCompare(a[property]);
+            }else{
+                return a[property].localeCompare(b[property]);
+            }        
+        }
+    }
 
   renderSeriesCards(item){
     const itemList = item.map(function(name, index){
@@ -88,12 +110,12 @@ class SeriesDetails extends Component{
                 <Card.Content>
                   <Card.Header>
                     <a href={`http://universalviewer.io/uv.html?manifest=http://by2022.adaptcentre.ie/manifest/?id=${name.ID}`} target="_BLANK">
-                      {name.item_title}
+                      {name.REFNUM}
                     </a>
                   </Card.Header>
                   <Card.Description>
                     <a href={`http://universalviewer.io/uv.html?manifest=http://by2022.adaptcentre.ie/manifest/?id=${name.ID}`} target="_BLANK">
-                    {name.source_title} 
+                    {name.item_title} 
                     </a>
                   </Card.Description>
                 </Card.Content>       
