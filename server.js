@@ -3,7 +3,7 @@ const routes = require('./routes')
 //DEV
 //const dev = process.env.NODE_ENV !== 'production'
 //Production
-const dev = 1 == 1
+const dev = 1 !== 1
 const app = next({ dev })
 const handler = routes.getRequestHandler(app)
 
