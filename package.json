@@ -4,9 +4,9 @@
   "description": "Public Search in ReactJS",
   "main": "index.js",
   "scripts": {
-    "dev": "SET NODE_ENV=development",
+    "dev": "NODE_ENV=development",
     "build": "next build",
-    "prod": "SET NODE_ENV=production",
+    "prod": "NODE_ENV=production",
     "start": "node server.js"
   },
   "dependencies": {
