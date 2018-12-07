@@ -81,11 +81,13 @@ class SeriesDetails extends Component{
   renderSubitemsCards(item){
     console.log(Globals)
     const itemList = item.map(function(name, index){
-      let url
-      if(name.source_title){
+      let url, title
+      if(name.ctype == "admin-published-sources"){
         url = 'http://universalviewer.io/uv.html?manifest=http%3A%2F%2Fby2022.adaptcentre.ie%2Fmanifest%2F%3Fid%3D'+name.ID+'%26type%3Dpubsrc'
+        title = ""
       }else{
-        url = 'http://universalviewer.io/uv.html?manifest=http%3A%2F%2Fby2022.adaptcentre.ie%2Fmanifest%2F%3Fid%3D'+name.ID         
+        url = 'http://universalviewer.io/uv.html?manifest=http%3A%2F%2Fby2022.adaptcentre.ie%2Fmanifest%2F%3Fid%3D'+name.ID     
+        title = name.REFNUM   
       }
       if(index<40){
         return(
@@ -96,12 +98,12 @@ class SeriesDetails extends Component{
                 <Card.Content>
                   <Card.Header>
                     <a href={`${url}`} target="_BLANK">
-                      {name.REFNUM}{name.source_title}
+                      {title}
                     </a>
                   </Card.Header>
                   <Card.Description>
                    <a href={`${url}`} target="_BLANK">
-                    {name.item_title} 
+                    {name.item_title}{name.source_title}
                     </a>
                   </Card.Description>
                 </Card.Content>       
