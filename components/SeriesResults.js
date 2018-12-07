@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {Link} from '../routes'
 import { Grid, List, Header, Pagination } from 'semantic-ui-react'
 import Globals from '../config/Globals'
+import ShowMore from 'react-show-more'
 
 class SeriesResults extends Component{
 	  constructor(props){
@@ -15,7 +16,7 @@ class SeriesResults extends Component{
 	      },
 	      error: "",
 	      totalPages: 0,
-	      itemsPerPage: 15,
+	      itemsPerPage: 30,
 	      activePage: 1,
 	      seriesPagination: []
 	    }
@@ -70,7 +71,15 @@ class SeriesResults extends Component{
 			      <List.Content>
 			        <List.Header as='a'>{name.unqiue_ref_no} {name.title}</List.Header>
 			        <List.Description as='a'>
-			        	<div dangerouslySetInnerHTML={ { __html: name.woods_desc } }></div>
+				         <ShowMore
+		                    lines={5}
+		                    more='Show more'
+		                    less='Show less'
+		                    anchorClass=''
+		                >
+		                 <div dangerouslySetInnerHTML={ { __html: name.woods_desc } }></div>
+		                </ShowMore>
+			        	
 			        </List.Description>
 			      </List.Content>
 			    </List.Item>

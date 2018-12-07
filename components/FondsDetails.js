@@ -83,10 +83,7 @@ class FondsDetails extends Component{
         return(
             <Card key={`si_${index}`} color="olive">
               <Image src={`${Globals.Globals.lorisUrl}/${name.fullfilename}/full/full/0/default.jpg`} />
-              <Card.Content>
-                <Card.Header>{name.fileURL}</Card.Header>
-                <Card.Description>{name.subtype} </Card.Description>
-              </Card.Content>       
+                   
             </Card>
         )
       }
@@ -170,7 +167,7 @@ class FondsDetails extends Component{
             <Card.Group>
               {this.renderSubitemsCards(this.state.items.subitemDetails)}
              </Card.Group>
-             <p className="link-right"><a href="#">View More >></a></p>
+             <p className="link-right"><Link route={`/results/series-results/${this.state.items.ID}`}><a>View More >></a></Link></p>
           </Grid.Column>
         </Grid.Row>
         

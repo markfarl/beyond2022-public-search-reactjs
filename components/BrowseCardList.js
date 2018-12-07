@@ -7,20 +7,20 @@ class BrowseCardList extends Component{
     this.state = {
       items: [
       {
-        header: 'Browse Fonds (Offices)',
-        description: 'Browse woods guide the way he intended. This selection will bring the works of woods to life right in front of your eyes. Behold woods uncondtionalBrowse woods guide the way he intended. This selection will bring the works of woods to life right in front of your eyes. Behold woods uncondtional ',
+        header: 'Enter the Record Treasury',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer facilisis diam quis erat congue aliquet. Aliquam semper lorem sed nisi ultrices, in condimentum augue euismod. Curabitur tempus tellus arcu, ut pretium massa vestibulum eget. Sed pretium scelerisque fringilla.',
         color: 'olive',
         url: 'fonds.png'
       },
       {
-        header: ' Browse By Repository',
-        description: 'Browse woods guide the way he intended. This selection will bring the works of woods to life right in front of your eyes. Behold woods uncondtionalBrowse woods guide the way he intended. This selection will bring the works of woods to life right in front of your eyes. Behold woods uncondtional ',
+        header: ' Explore Inventory of Loss and Survival',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer facilisis diam quis erat congue aliquet. Aliquam semper lorem sed nisi ultrices, in condimentum augue euismod. Curabitur tempus tellus arcu, ut pretium massa vestibulum eget. Sed pretium scelerisque fringilla.',        
         color: 'olive',
         url: 'repo.png'
       },
       {
-        header: 'Browse Replacement items',
-        description: 'Browse woods yuss guide the way he intended. This selection will bring the works of woods to life right in front of your eyes. Behold woods uncondtionalBrowse woods guide the way he intended. This selection will bring the works of woods to life right in front of your eyes. Behold woods uncondtional ',
+        header: 'View Digitizations',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer facilisis diam quis erat congue aliquet. Aliquam semper lorem sed nisi ultrices, in condimentum augue euismod. Curabitur tempus tellus arcu, ut pretium massa vestibulum eget. Sed pretium scelerisque fringilla.',        
         color: 'olive',
         url: 'items.png'
       },

@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {Link} from '../routes'
 import { Image, Icon, Grid, Card, Dimmer, Loader } from 'semantic-ui-react'
 import Globals from '../config/Globals'
-import ShowMore from 'react-show-more';
+import ShowMore from 'react-show-more'
 
 class SeriesDetails extends Component{
 
@@ -48,10 +48,7 @@ class SeriesDetails extends Component{
             items: JSON.parse(result)[0]
           })
 
-          //sort the subitem array
-          if(this.state.items.subitemDetails.length>1){
-            this.state.items.subitemDetails.sort(this.dynamicSort("REFNUM"))  
-          } 
+         
           console.log(this.state.items)
         },
         (error) => {
@@ -62,23 +59,6 @@ class SeriesDetails extends Component{
         }
       )
   }
-
-  dynamicSort(property) {
-      var sortOrder = 1;
-
-        if(property[0] === "-") {
-            sortOrder = -1;
-            property = property.substr(1);
-        }
-
-        return function (a,b) {
-            if(sortOrder == -1){
-                return b[property].localeCompare(a[property]);
-            }else{
-                return a[property].localeCompare(b[property]);
-            }        
-        }
-    }
 
   renderSeriesCards(item){
     const itemList = item.map(function(name, index){
