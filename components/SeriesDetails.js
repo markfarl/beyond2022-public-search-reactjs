@@ -81,20 +81,26 @@ class SeriesDetails extends Component{
   renderSubitemsCards(item){
     console.log(Globals)
     const itemList = item.map(function(name, index){
+      let url
+      if(name.source_title){
+        url = 'http://universalviewer.io/uv.html?manifest=http%3A%2F%2Fby2022.adaptcentre.ie%2Fmanifest%2F%3Fid%3D'+name.ID+'%26type%3Dpubsrc'
+      }else{
+        url = 'http://universalviewer.io/uv.html?manifest=http%3A%2F%2Fby2022.adaptcentre.ie%2Fmanifest%2F%3Fid%3D'+name.ID         
+      }
       if(index<40){
         return(
               <Card key={`si_${index}`} color="olive">
-                <a href={`http://universalviewer.io/uv.html?manifest=http://by2022.adaptcentre.ie/manifest/?id=${name.ID}`} target="_BLANK">
+                <a href={`${url}`} target="_BLANK">
                   <Image src={`${Globals.Globals.lorisUrl}/${name.fileurl}/full/full/0/default.jpg`} />
                 </a>
                 <Card.Content>
                   <Card.Header>
-                    <a href={`http://universalviewer.io/uv.html?manifest=http://by2022.adaptcentre.ie/manifest/?id=${name.ID}`} target="_BLANK">
-                      {name.REFNUM}
+                    <a href={`${url}`} target="_BLANK">
+                      {name.REFNUM}{name.source_title}
                     </a>
                   </Card.Header>
                   <Card.Description>
-                    <a href={`http://universalviewer.io/uv.html?manifest=http://by2022.adaptcentre.ie/manifest/?id=${name.ID}`} target="_BLANK">
+                   <a href={`${url}`} target="_BLANK">
                     {name.item_title} 
                     </a>
                   </Card.Description>
