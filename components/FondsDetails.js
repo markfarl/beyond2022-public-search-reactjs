@@ -61,7 +61,7 @@ class FondsDetails extends Component{
 
   renderSeriesCards(item,fondid){
     const itemList = item.map(function(name, index){
-      if(index<4){
+      if(index<8){
         return(
             <Link key={`c_${index}`} route={`/series-details/${name.ID}/${fondid}`}>
               <Card  color="olive">
