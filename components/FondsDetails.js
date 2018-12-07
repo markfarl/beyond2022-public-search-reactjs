@@ -79,7 +79,7 @@ class FondsDetails extends Component{
   }
   renderSubitemsCards(item){
     const itemList = item.map(function(name, index){
-      if(index<4){
+      if(index<8){
         return(
             <Card key={`si_${index}`} color="olive">
               <Image src={`${Globals.Globals.lorisUrl}/${name.fullfilename}/full/full/0/default.jpg`} />
@@ -158,18 +158,6 @@ class FondsDetails extends Component{
         </Grid.Row>
 
 
-        <Grid.Row>
-          <Grid.Column width={16} className={this.state.items.subitemResCount > 0 ? '' : 'hidden'}>
-          <hr />
-           <p><strong>Substitute items</strong><br />
-            {this.state.items.subitemResCount} related substitute items
-            </p>
-            <Card.Group>
-              {this.renderSubitemsCards(this.state.items.subitemDetails)}
-             </Card.Group>
-             <p className="link-right"><Link route={`/results/series-results/${this.state.items.ID}`}><a>View More >></a></Link></p>
-          </Grid.Column>
-        </Grid.Row>
         
       </Grid>
       
