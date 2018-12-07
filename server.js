@@ -9,10 +9,10 @@ const handler = routes.getRequestHandler(app)
 
 const { createServer } = require('http')
 app.prepare().then(() => {
-  createServer(handler).listen(3001),
+  createServer(handler).listen(8080),
     err => {
       if (err) throw err
-      console.log('Ready on localhost:3000')
+      console.log('Ready on localhost:80')
       console.log(process.env.NODE_ENV)
     }
 })
